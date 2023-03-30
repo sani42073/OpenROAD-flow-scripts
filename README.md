@@ -213,11 +213,11 @@ Neural Semiconductor Limited
 Dhaka, Bangladesh
 
 ## **9. Acknowledgment** ##
-* Neural Semiconductor Limited
+* [Neural Semiconductor Limited](http://www.neural-semiconductor.com)
 * Neural Semiconductor Physical Design Team
 
 ## **10. Contact Information** ##
 * Sajjad Hossain Sani, Physical Design Engineer, sajjad.hossain@neural-semiconductor.com
-* Neural Semiconductor Limited , Dhaka, Bangladesh ,http://www.neural-semiconductor.com/
+* [Neural Semiconductor Limited](http://www.neural-semiconductor.com) , Dhaka, Bangladesh.
 
 
