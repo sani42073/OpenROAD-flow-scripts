@@ -1,6 +1,12 @@
 # **PPA Improvements of riscv32i and ibex using OpenROAD Flow Scripts** #  
 &nbsp;
 
+
+## **1. Introduction** ##
+This repository contains all source code of OpenRoad scripts along with the modified scripts to get better PPA.   
+
+Using the ORFS flow we are able to run the flow RTL to GDS within a very short time. After exploring different stages we are able to find some modifications which can improve the overall PPA. Here, we described some changes in parameters and scripts which can improve the performance of the riscv32i and ibex design while keeping the design DRC free.
+
 ## **Table of Contents** ##
 * [1. Introduction](https://github.com/sani42073/OpenROAD-flow-scripts/tree/7nmcontest#1-introduction)
 * [2. Tool Flow](https://github.com/sani42073/OpenROAD-flow-scripts/tree/7nmcontest#2-tool-flow)
@@ -21,10 +27,6 @@
 * [9. Acknowledgment](https://github.com/sani42073/OpenROAD-flow-scripts/tree/7nmcontest#9-acknowledgment)
 * [10. Contact Information](https://github.com/sani42073/OpenROAD-flow-scripts/tree/7nmcontest#10-contact-information)
 
-## **1. Introduction** ##
-This repository contains all source code of OpenRoad scripts along with the modified scripts to get better PPA.   
-
-Using the ORFS flow we are able to run the flow RTL to GDS within a very short time. After exploring different stages we are able to find some modifications which can improve the overall PPA. Here, we described some changes in parameters and scripts which can improve the performance of the riscv32i and ibex design while keeping the design DRC free.
 
 ## **2. Tool Flow** ##
 This flow chat represent the RTL to GDS flow using OpenRoad flow script.
@@ -33,7 +35,7 @@ This flow chat represent the RTL to GDS flow using OpenRoad flow script.
 
 ## **3. Challenges** ##
 
-* Using different VT cell on synthesis.
+* Using multiple types of VT cell on synthesis.
 * Placing the macro in proper position to maintain better PPA.
 * Finding proper pin placement.
 * Maintain proper cluster size and diameter to gain best clock skew.
@@ -81,7 +83,8 @@ This flow chat represent the RTL to GDS flow using OpenRoad flow script.
 ### **6.1 Synthesis:** ###
 we changed the PDK config file and used the SLVT cell for our design to improve the performance. Because SLVT has a lower delay than other VT cell.
 
-![fig. 2](./Images/1_slvt.png)    
+![fig. 2](./Images/1_slvt.png)  
+`./flow/platforms/asap7/config.mk` 
 &nbsp;
 #### **Design Specific Changes on synthesis stage:** ####
 We used SLVT cell for both riscV32i and ibex design.
@@ -93,47 +96,55 @@ We used SLVT cell for both riscV32i and ibex design.
 ##### **For riscV32i:** #####
 For riscV32i design we used M4 and M7 metal layer for horizontal and vertical Pin layer. 
 
-![fig. 3](./Images/2_pinlayer_ibex.png)
+![fig. 3](./Images/2_pinlayer_riscv.png)  
 
+`./flow/designs/asap7/riscv32i/config.mk`
 ##### **For ibex:** #####
 For ibex design we used M4 and M5 metal layer for horizontal and vertical Pin layer.  
-![fig. 4](./Images/2_pinlayer_riscv.png)
+![fig. 4](./Images/2_pinlayer_ibex.png)    
+`./flow/designs/asap7/ibex/config.mk`
 
 ### **6.3 CTS:** ###
 
 * We changed clock routing layer for our design to ensure proper use or routing layer.
 
-![fig. 5](./Images/3_clk_routing_layer.png)
+![fig. 5](./Images/3_clk_routing_layer.png)  
+`./flow/scripts/cts.tcl`
 
 * We Also added Remove_buffer and reapair_design command to remove all buffer tree and rebuilt the clock tree again to get better clock skew.
 
-![fig. 6](./Images/4_remove_buffer_tree.png)
+![fig. 6](./Images/4_remove_buffer_tree.png)  
+`./flow/scripts/cts.tcl`
 
 * We also changed cluster size and diameter to improve the clock skew.
 
-![fig. 7](./Images/5_cluster.png)
+![fig. 7](./Images/5_cluster.png)  
+`./flow/scripts/cts.tcl`
 
 * We added CTS  cell list for our design to improve the clock skew. 
 
-![fig. 8](./Images/6_clk_buffer.png)
+![fig. 8](./Images/6_clk_buffer.png)  
+`./flow/scripts/cts.tcl`
 
 &nbsp;
 #### **Design Specific Changes on CTS stage:** ####
 ##### **For riscV32i:** #####
 The changes on design config.mk is given below:
 
-![fig. 9](./Images/7_cts_stage_design_config_ibex.png)
+![fig. 9](./Images/7_cts_stage_design_config_riscv.png)  
+`./flow/designs/asap7/riscv32i/config.mk`
 
 ##### **For ibex:** #####
 The changes on design config.mk is given below:
 
-![fig. 10](./Images/7_cts_stage_design_config_riscv.png)
-
+![fig. 10](./Images/7_cts_stage_design_config_ibex.png)  
+`./flow/designs/asap7/ibex/config.mk`
 
 ### **6.4 Route:** ###
 * We modified the global layer adjustment attribute in our design to maintain proper routing congestion and proper uses of routing resources and which lead to better PPA. 
 
-![fig. 11](./Images/8_routing_layer_adjustment.png)
+![fig. 11](./Images/8_routing_layer_adjustment.png)  
+`./flow/scripts/global_route.tcl`
 
 * We also modified the signal routing layer to maintain lower routing congestion and keep the routing DRC free and get better PPA. 
 
@@ -142,12 +153,14 @@ The changes on design config.mk is given below:
 ##### **For riscV32i:** #####
 The changes on design config.mk is given below:
 
-![plot](./Images/9_routing_riscv.png)
+![plot](./Images/9_routing_riscv.png)  
+`./flow/designs/asap7/riscv32i/config.mk`
 
 ##### **For ibex:** #####
 The changes on design config.mk is given below:
 
-![fig. 12](./Images/10_routing_ibex.png)
+![fig. 12](./Images/10_routing_ibex.png)  
+`./flow/designs/asap7/ibex/config.mk`
 
 ## **7. Conclusion** ##
 By multiple test runs using various resources available, we
@@ -156,7 +169,13 @@ design goals of the contest which was to achieve best performance (Best fmax) wi
 
 &nbsp;
 
-##### **Comparison for riscV32i design:** #####  
+##### **Comparison for riscV32i design:** #####    
+
+** Comparison between two design config file **
+
+![plot](./Images/riscv_base_vs_edited_config.png)  
+
+** Comparison of output **
 
 |Criteria| Default flow script | Modified flow script |
 |---------|---------------------| ---------------------|
@@ -171,6 +190,13 @@ design goals of the contest which was to achieve best performance (Best fmax) wi
 
 ##### **Comparison for ibex design:** #####  
 
+** Comparison between two design config file **
+
+![plot](./Images/ibex_base_vs_edited_config.png)  
+
+
+** Comparison of output **
+
 |Criteria| Default flow script | Modified flow script |
 |---------|---------------------| ---------------------|
 |Frequency| 568.18 MHz | 769.23 MHz |
@@ -182,8 +208,8 @@ design goals of the contest which was to achieve best performance (Best fmax) wi
 
 
 **Note:** 
-* After cloning the repository, you may need to source the 'setup.env.sh' file.
-* And, after that you need to Uncomment the design in Makefile and run "make finish" command to run the flow.
+* After cloning the repository, If ORFS is already built locally in your machine then you may need to source `setup.env.sh` file from that directory.
+* And, after that you need to select the design in Makefile and run "make finish" command to run the flow.
 
 ## **8. Author** ##
 Sajjad Hossain Sani  
@@ -198,4 +224,5 @@ Dhaka, Bangladesh
 ## **10. Contact Information** ##
 * Sajjad Hossain Sani, Physical Design Engineer, sajjad.hossain@neural-semiconductor.com
 * Neural Semiconductor Limited , Dhaka, Bangladesh ,http://www.neural-semiconductor.com/
+
 
