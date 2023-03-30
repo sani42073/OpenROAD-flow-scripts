@@ -2,24 +2,24 @@
 &nbsp;
 
 ## **Table of Contents** ##
-* [1. Introduction](#1.-Introduction)
-* [2. Tool Flow](#2.-Tool-Flow)
-* [3. Challenges](#3.-Challenges)
-* [4. Observation](#4.-Observation)
-* [5. What is Do-able?](#5.-What-is-Do-able?)
-  * [5.1 Synthesis](#5.1-Synthesis)
-  * [5.2 Floorplan](#5.2-Floorplan)
-  * [5.3 CTS](#5.3-CTS)
-  * [5.4 Route](#5.4-Route)
-* [6. Work Done](#6.-Work-Done)
-  * [6.1 Synthesis](#6.1-Synthesis)
-  * [6.2 Floorplan](#6.2-Floorplan)
-  * [6.3 CTS](#5.3-CTS)
-  * [6.4 Route](#6.4-Route)
-* [7. Conclusion](#7.-Conclusion)
-* [8. Author](#8.-Author)
-* [9. Acknowledgment](#9.-Acknowledgment)
-* [10. Contact Information](#10.-Contact-Information)
+* [1. Introduction](https://github.com/sani42073/OpenROAD-flow-scripts/tree/7nmcontest#1-introduction)
+* [2. Tool Flow](https://github.com/sani42073/OpenROAD-flow-scripts/tree/7nmcontest#2-tool-flow)
+* [3. Challenges](https://github.com/sani42073/OpenROAD-flow-scripts/tree/7nmcontest#3-challenges)
+* [4. Observation](https://github.com/sani42073/OpenROAD-flow-scripts/tree/7nmcontest#4-observation)
+* [5. What is Do-able?](https://github.com/sani42073/OpenROAD-flow-scripts/tree/7nmcontest#5-what-is-do-able)
+  * [5.1 Synthesis](https://github.com/sani42073/OpenROAD-flow-scripts/tree/7nmcontest#51-synthesis)
+  * [5.2 Floorplan](https://github.com/sani42073/OpenROAD-flow-scripts/tree/7nmcontest#52-floorplan)
+  * [5.3 CTS](https://github.com/sani42073/OpenROAD-flow-scripts/tree/7nmcontest#53-cts)
+  * [5.4 Route](https://github.com/sani42073/OpenROAD-flow-scripts/tree/7nmcontest#54-route)
+* [6. Work Done](https://github.com/sani42073/OpenROAD-flow-scripts/tree/7nmcontest#6-work-done)
+  * [6.1 Synthesis](https://github.com/sani42073/OpenROAD-flow-scripts/tree/7nmcontest#61-synthesis)
+  * [6.2 Floorplan](https://github.com/sani42073/OpenROAD-flow-scripts/tree/7nmcontest#62-floor-plan)
+  * [6.3 CTS](https://github.com/sani42073/OpenROAD-flow-scripts/tree/7nmcontest#63-cts)
+  * [6.4 Route](https://github.com/sani42073/OpenROAD-flow-scripts/tree/7nmcontest#64-route)
+* [7. Conclusion](https://github.com/sani42073/OpenROAD-flow-scripts/tree/7nmcontest#7-conclusion)
+* [8. Author](https://github.com/sani42073/OpenROAD-flow-scripts/tree/7nmcontest#8-author)
+* [9. Acknowledgment](https://github.com/sani42073/OpenROAD-flow-scripts/tree/7nmcontest#9-acknowledgment)
+* [10. Contact Information](https://github.com/sani42073/OpenROAD-flow-scripts/tree/7nmcontest#10-contact-information)
 
 ## **1. Introduction** ##
 This repository contains all source code of OpenRoad scripts along with the modified scripts to get better PPA.   
@@ -179,6 +179,11 @@ design goals of the contest which was to achieve best performance (Best fmax) wi
 |Hold ws | 35.45 ps | 18.67 ps |
 |Hold tns| 0 | 0 |
 |DRC after routing| 0 | 0 |
+
+
+*Note:* 
+* After cloning the repository, We need to source the setup.env.sh file.
+* And, after that we need to Uncomment the design in Makefile and run "make finish" command to run the flow.
 
 ## **8. Author** ##
 Sajjad Hossain Sani  
