@@ -182,8 +182,8 @@ design goals of the contest which was to achieve best performance (Best fmax) wi
 
 
 **Note:** 
-* After cloning the repository, We need to source the setup.env.sh file.
-* And, after that we need to Uncomment the design in Makefile and run "make finish" command to run the flow.
+* After cloning the repository, you may need to source the 'setup.env.sh' file.
+* And, after that you need to Uncomment the design in Makefile and run "make finish" command to run the flow.
 
 ## **8. Author** ##
 Sajjad Hossain Sani  
