@@ -1,17 +1,17 @@
-# *PPA Improvements of riscv32i and ibex using OpenROAD Flow Scripts* #  
+# **PPA Improvements of riscv32i and ibex using OpenROAD Flow Scripts** #  
 &nbsp;
 
-## *1. Introduction:* ##
+## **1. Introduction:** ##
 This repository contains all source code of OpenRoad scripts along with the modified scripts to get better PPA.   
 
 Using the ORFS flow we are able to run the flow RTL to GDS within a very short time. After exploring different stages we are able to find some modifications which can improve the overall PPA. Here, we described some changes in parameters and scripts which can improve the performance of the riscv32i and ibex design while keeping the design DRC free.
 
-## *2. Tool Flow* ##
+## **2. Tool Flow** ##
 This flow chat represent the RTL to GDS flow using OpenRoad flow script.
 
 ![fig. 1](./Images/0_tool_flow.png)
 
-## *3. Challenges* ##
+## **3. Challenges** ##
 
 * Using different VT cell on synthesis.
 * Placing the macro in proper position to maintain better PPA.
@@ -24,62 +24,62 @@ This flow chat represent the RTL to GDS flow using OpenRoad flow script.
 * Keep the design DRC free while increasing the clock frequency.
 * Maintaining or keeping the DRV at minimum.
 
-## *4. Observation* ##
+## **4. Observation** ##
 
 * In synthesis, yosys tool can’t handle multiple type  of library file. So, we can’t able to use different type of VT cell in the design. We can only use the RVT or LVT or SLVT cell.
 * In the library file there wasn’t any clock buffer cell so we had to use the normal buffer cell and clock inverter for CTS.
 * While we change the macro position in our design for some macro placement tool wasn’t able to route properly due to high routing congestion.
 * While increasing the clock frequency we show some DRC violation (for example minimum spacing violation) in our routing stage.
 
-## *5. What is Do-able?* ##
+## **5. What is Do-able?** ##
 
-### *5.1 Synthesis* ###
+### **5.1 Synthesis** ###
 
 * Using SLVT or LVT or RVT cell
 * Using different optimization switch and attribute.
 
 
-### *5.2 Floorplan* ###
+### **5.2 Floorplan** ###
 
 * Changing the macro placement.
 * Changing the pin placement and Pin metal layer.
 
-### *5.3 CTS* ###
+### **5.3 CTS** ###
 
 * Changing cluster size and diameter.
 * Changing CTS cell.
 * Defining clock routing layer.
 * Adding setup and hold slack margin
 
-### *5.5 Route* ###
+### **5.5 Route** ###
 
 * Adjust the global routing layer .
 * Changing metal routing layer.
 
-## *6. Work Done* ##
+## **6. Work Done** ##
 
-### *6.1 Synthesis:* ###
+### **6.1 Synthesis:** ###
 we changed the PDK config file and used the SLVT cell for our design to improve the performance. Because SLVT has a lower delay than other VT cell.
 
 ![fig. 2](./Images/1_slvt.png)    
 &nbsp;
-#### *Design Specific Changes on synthesis stage:* ####
+#### **Design Specific Changes on synthesis stage:** ####
 We used SLVT cell for both riscV32i and ibex design.
 
-### *6.2 Floor Plan:* ###
+### **6.2 Floor Plan:** ###
 
 * While increasing frequency we faced some Metal spacing related DRC violation and changing the pin metal layer solve the issue. Also by changing the pin metal layer we can maintain the routing congestion.
 
-##### *For riscV32i:* #####
+##### **For riscV32i:** #####
 For riscV32i design we used M4 and M7 metal layer for horizontal and vertical Pin layer. 
 
 ![fig. 3](./Images/2_pinlayer_ibex.png)
 
-##### *For ibex:* #####
+##### **For ibex:** #####
 For ibex design we used M4 and M5 metal layer for horizontal and vertical Pin layer.  
 ![fig. 4](./Images/2_pinlayer_riscv.png)
 
-### *6.3 CTS:* ###
+### **6.3 CTS:** ###
 
 * We changed clock routing layer for our design to ensure proper use or routing layer.
 
@@ -98,19 +98,19 @@ For ibex design we used M4 and M5 metal layer for horizontal and vertical Pin la
 ![fig. 8](./Images/6_clk_buffer.png)
 
 &nbsp;
-#### *Design Specific Changes on CTS stage:* ####
-##### *For riscV32i:* #####
+#### **Design Specific Changes on CTS stage:** ####
+##### **For riscV32i:** #####
 The changes on design config.mk is given below:
 
 ![fig. 9](./Images/7_cts_stage_design_config_ibex.png)
 
-##### *For ibex:* #####
+##### **For ibex:** #####
 The changes on design config.mk is given below:
 
 ![fig. 10](./Images/7_cts_stage_design_config_riscv.png)
 
 
-### *6.4 Route:* ###
+### **6.4 Route:** ###
 * We modified the global layer adjustment attribute in our design to maintain proper routing congestion and proper uses of routing resources and which lead to better PPA. 
 
 ![fig. 11](./Images/8_routing_layer_adjustment.png)
@@ -118,18 +118,18 @@ The changes on design config.mk is given below:
 * We also modified the signal routing layer to maintain lower routing congestion and keep the routing DRC free and get better PPA. 
 
 &nbsp;
-#### *Design Specific Changes on Route stage:* ####
-##### *For riscV32i:* #####
+#### **Design Specific Changes on Route stage:** ####
+##### **For riscV32i:** #####
 The changes on design config.mk is given below:
 
 ![fig. 12](./Images/9_routing_riscv.png)
 
-##### *For ibex:* #####
+##### **For ibex:** #####
 The changes on design config.mk is given below:
 
 ![fig. 13](./Images/10_routing_ibex.png)
 
-## *7. CONCLUSIONS:* ##
+## **7. CONCLUSIONS:** ##
 
 By multiple test runs using various resources available, we
 were able to come up with ideas that were able to meet the
@@ -137,7 +137,7 @@ design goals of the contest which was to achieve best performance (Best fmax) wi
 
 &nbsp;
 
-##### *Comparison for riscV32i design:* #####  
+##### **Comparison for riscV32i design:** #####  
 
 |Criteria| Default flow script | Modified flow script |
 |---------|---------------------| ---------------------|
@@ -150,7 +150,7 @@ design goals of the contest which was to achieve best performance (Best fmax) wi
 
 &nbsp;
 
-##### *Comparison for ibex design:* #####  
+##### **Comparison for ibex design:** #####  
 
 |Criteria| Default flow script | Modified flow script |
 |---------|---------------------| ---------------------|
