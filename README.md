@@ -164,7 +164,7 @@ By multiple test runs using various resources available, we were able to come up
 
 &nbsp;
 
-##### **Comparison for riscV32i design:** #####    
+#### **Comparison for riscV32i design:** ####    
 
 **Comparison between two design config file**
 
@@ -183,7 +183,7 @@ By multiple test runs using various resources available, we were able to come up
 
 &nbsp;
 
-##### **Comparison for ibex design:** #####  
+#### **Comparison for ibex design:** ####  
 
 **Comparison between two design config file**
 
