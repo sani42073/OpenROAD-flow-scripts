@@ -181,7 +181,7 @@ design goals of the contest which was to achieve best performance (Best fmax) wi
 |DRC after routing| 0 | 0 |
 
 
-*Note:* 
+**Note:** 
 * After cloning the repository, We need to source the setup.env.sh file.
 * And, after that we need to Uncomment the design in Makefile and run "make finish" command to run the flow.
 
