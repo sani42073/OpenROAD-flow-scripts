@@ -6,10 +6,11 @@ if {[info exist env(PRE_GLOBAL_ROUTE)]} {
   source $env(PRE_GLOBAL_ROUTE)
 }
 
+##Routing Layer Adjustment Modification##
 if {[info exist env(FASTROUTE_TCL)]} {
   source $env(FASTROUTE_TCL)
 } else {
-  set_global_routing_layer_adjustment $env(MIN_ROUTING_LAYER)-$env(MAX_ROUTING_LAYER) 0.5
+  set_global_routing_layer_adjustment $env(MIN_ROUTING_LAYER)-$env(MAX_ROUTING_LAYER) $env(ROUTING_TRACK_USE)
   set_routing_layers -signal $env(MIN_ROUTING_LAYER)-$env(MAX_ROUTING_LAYER)
   if {[info exist env(MACRO_EXTENSION)]} {
     set_macro_extension $env(MACRO_EXTENSION)
@@ -37,3 +38,4 @@ source [file join $env(SCRIPTS_DIR) "write_ref_sdc.tcl"]
 if {![info exists save_checkpoint] || $save_checkpoint} {
   write_db $env(RESULTS_DIR)/5_1_grt.odb
 }
+

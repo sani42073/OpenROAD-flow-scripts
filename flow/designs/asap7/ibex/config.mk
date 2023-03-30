@@ -11,6 +11,14 @@ export CORE_ASPECT_RATIO      = 1
 export CORE_MARGIN            = 2
 export PLACE_DENSITY_LB_ADDON  = 0.20
 
-export ENABLE_DPO = 0
+export ENABLE_DPO = 0 
 
 export DFF_LIB_FILE           = $($(CORNER)_DFF_LIB_FILE)
+
+##Modification For CTS Stage##
+export CTS_CLUSTER_SIZE      = 50
+
+##For Routing Modification##
+export MAX_ROUTING_LAYER       = M8
+export ROUTING_TRACK_USE       = 0.65
+

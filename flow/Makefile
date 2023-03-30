@@ -73,7 +73,7 @@
 # DESIGN_CONFIG=./designs/asap7/ethmac/config.mk
 # DESIGN_CONFIG=./designs/asap7/uart/config.mk
 # DESIGN_CONFIG=./designs/asap7/sha3/config.mk
-# DESIGN_CONFIG=./designs/asap7/riscv32i/config.mk
+ DESIGN_CONFIG=./designs/asap7/riscv32i/config.mk
 # DESIGN_CONFIG=./designs/asap7/swerv_wrapper/config.mk
 
 # DESIGN_CONFIG=./designs/intel22/gcd/config.mk
@@ -166,7 +166,7 @@ export SYNTH_ARGS ?= -flatten
 # Global setting for Floorplan
 export PLACE_PINS_ARGS
 
-export FLOW_VARIANT ?= base
+export FLOW_VARIANT ?= final
 
 export GPL_TIMING_DRIVEN ?= 1
 export GPL_ROUTABILITY_DRIVEN ?= 1
