@@ -166,11 +166,11 @@ By multiple test runs using various resources available, we were able to come up
 
 #### **Comparison for riscV32i design:** ####    
 
-**Comparison between two design config file**
+##### **Comparison between two design config file** #####
 
 ![plot](./Images/riscv_base_vs_edited_config.png)  
 
-**Comparison of output**
+##### **Comparison of output** #####
 
 |Criteria| Default flow script | Modified flow script |
 |---------|---------------------| ---------------------|
