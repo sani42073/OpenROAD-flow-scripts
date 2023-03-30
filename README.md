@@ -1,7 +1,27 @@
 # **PPA Improvements of riscv32i and ibex using OpenROAD Flow Scripts** #  
 &nbsp;
 
-## **1. Introduction:** ##
+## **Table of Contents** ##
+* [1. Introduction](#1.-Introduction)
+* [2. Tool Flow](#2.-Tool-Flow)
+* [3. Challenges](#3.-Challenges)
+* [4. Observation](#4.-Observation)
+* [5. What is Do-able?](#5.-What-is-Do-able?)
+  * [5.1 Synthesis](#5.1-Synthesis)
+  * [5.2 Floorplan](#5.2-Floorplan)
+  * [5.3 CTS](#5.3-CTS)
+  * [5.4 Route](#5.4-Route)
+* [6. Work Done](#6.-Work-Done)
+  * [6.1 Synthesis](#6.1-Synthesis)
+  * [6.2 Floorplan](#6.2-Floorplan)
+  * [6.3 CTS](#5.3-CTS)
+  * [6.4 Route](#6.4-Route)
+* [7. Conclusion](#7.-Conclusion)
+* [8. Author](#8.-Author)
+* [9. Acknowledgment](#9.-Acknowledgment)
+* [10. Contact Information](#10.-Contact-Information)
+
+## **1. Introduction** ##
 This repository contains all source code of OpenRoad scripts along with the modified scripts to get better PPA.   
 
 Using the ORFS flow we are able to run the flow RTL to GDS within a very short time. After exploring different stages we are able to find some modifications which can improve the overall PPA. Here, we described some changes in parameters and scripts which can improve the performance of the riscv32i and ibex design while keeping the design DRC free.
@@ -51,7 +71,7 @@ This flow chat represent the RTL to GDS flow using OpenRoad flow script.
 * Defining clock routing layer.
 * Adding setup and hold slack margin
 
-### **5.5 Route** ###
+### **5.4 Route** ###
 
 * Adjust the global routing layer .
 * Changing metal routing layer.
@@ -122,15 +142,14 @@ The changes on design config.mk is given below:
 ##### **For riscV32i:** #####
 The changes on design config.mk is given below:
 
-![fig. 12](./Images/9_routing_riscv.png)
+![plot](./Images/9_routing_riscv.png)
 
 ##### **For ibex:** #####
 The changes on design config.mk is given below:
 
-![fig. 13](./Images/10_routing_ibex.png)
+![fig. 12](./Images/10_routing_ibex.png)
 
-## **7. CONCLUSIONS:** ##
-
+## **7. Conclusion** ##
 By multiple test runs using various resources available, we
 were able to come up with ideas that were able to meet the
 design goals of the contest which was to achieve best performance (Best fmax) without any timing violation (0 wns).**For riscV32i design we are able to achieve 771.01 MHz frequency and for ibex we are able to achieve 769.23 MHz frequency with 0 wns, we could have achieved more better frequency but in that case DRV (Design Rule Violations) violation will be much larger and that's why we didn't increase the frequency after 771.01 MHz**. Here is the comparison of the base run using the default flow script of OpenRoad (on 625MHZ for riscV32i and 568.18 MHz for ibex) and the base run using all our modifications (on 769.63 MHz for both riscV32i and ibex).
@@ -161,4 +180,17 @@ design goals of the contest which was to achieve best performance (Best fmax) wi
 |Hold tns| 0 | 0 |
 |DRC after routing| 0 | 0 |
 
+## **8. Author** ##
+Sajjad Hossain Sani  
+Physical Design Department  
+Neural Semiconductor Limited  
+Dhaka, Bangladesh
+
+## **9. Acknowledgment** ##
+* Neural Semiconductor Limited
+* Neural Semiconductor Physical Design Team
+
+## **10. Contact Information** ##
+* Sajjad Hossain Sani, Physical Design Engineer, sajjad.hossain@neural-semiconductor.com
+* Neural Semiconductor Limited , Dhaka, Bangladesh ,http://www.neural-semiconductor.com/
 
