@@ -160,17 +160,17 @@ The changes on design config.mk is given below:
 `./flow/designs/asap7/ibex/config.mk`
 
 ## **7. Conclusion** ##
-By multiple test runs using various resources available, we were able to come up with ideas that were able to meet the design goals of the contest which was to achieve best performance (Best fmax) without any timing violation (0 wns).** For riscV32i design we were able to achieve 771.01 MHz frequency and for ibex we were able to achieve 769.23 MHz frequency with 0 wns. Higher frequency was achievable but in that case DRV (Design Rule Violations) violation will increase and so we didn't increase the frequency after 771.01 MHz **. Here is the comparison of the base run using the default flow script of OpenRoad (on 625MHZ for riscV32i and 568.18 MHz for ibex) and the completed run using all our modifications ( on 777 MHz for riscV32i design and 769.63 MHz for ibex design).
+By multiple test runs using various resources available, we were able to come up with ideas that were able to meet the design goals of the contest which was to achieve best performance (Best fmax) without any timing violation (0 wns).**For riscV32i design we were able to achieve 771.01 MHz frequency and for ibex we were able to achieve 769.23 MHz frequency with 0 wns. Higher frequency was achievable but in that case DRV (Design Rule Violations) violation will increase and so we didn't increase the frequency after 771.01 MHz**. Here is the comparison of the base run using the default flow script of OpenRoad (on 625MHZ for riscV32i and 568.18 MHz for ibex) and the completed run using all our modifications ( on 777 MHz for riscV32i design and 769.63 MHz for ibex design).
 
 &nbsp;
 
 ##### **Comparison for riscV32i design:** #####    
 
-** Comparison between two design config file **
+**Comparison between two design config file**
 
 ![plot](./Images/riscv_base_vs_edited_config.png)  
 
-** Comparison of output **
+**Comparison of output**
 
 |Criteria| Default flow script | Modified flow script |
 |---------|---------------------| ---------------------|
@@ -185,12 +185,12 @@ By multiple test runs using various resources available, we were able to come up
 
 ##### **Comparison for ibex design:** #####  
 
-** Comparison between two design config file **
+**Comparison between two design config file**
 
 ![plot](./Images/ibex_base_vs_edited_config.png)  
 
 
-** Comparison of output **
+**Comparison of output**
 
 |Criteria| Default flow script | Modified flow script |
 |---------|---------------------| ---------------------|
