@@ -3,9 +3,9 @@
 
 
 ## **1. Introduction** ##
-This repository contains all source code of OpenRoad scripts along with the modified scripts to get better PPA.   
+This repository contains all the source codes of OpenRoad flow scripts along with the modified scripts to obtain better PPA.   
 
-Using the ORFS flow we are able to run the flow RTL to GDS within a very short time. After exploring different stages we are able to find some modifications which can improve the overall PPA. Here, we described some changes in parameters and scripts which can improve the performance of the riscv32i and ibex design while keeping the design DRC free.
+Using the ORFS flow we are able to run the flow from RTL to GDS within a very short run time. After exploring different stages we found some modifications which can improve the overall PPA. Here, we described some changes in parameters and scripts which can improve the performance of the riscv32i and ibex design while keeping the design DRC free.
 
 ## **Table of Contents** ##
 * [1. Introduction](https://github.com/sani42073/OpenROAD-flow-scripts/tree/7nmcontest#1-introduction)
@@ -38,20 +38,20 @@ This flow chat represent the RTL to GDS flow using OpenRoad flow script.
 * Using multiple types of VT cell on synthesis.
 * Placing the macro in proper position to maintain better PPA.
 * Finding proper pin placement.
-* Maintain proper cluster size and diameter to gain best clock skew.
-* Finding the appropriate buffer or clock inverter cell for better timing.
-* High routing congestion while increasing clock frequency.
-* Distributing the metal layers properly for Clock tree, signal net and pin to get better PPA without zero negative slack.
+* Maintaining proper cluster size and diameter to gain best clock skew.
+* Finding the appropriate buffer or clock inverter cell to improve timing.
+* High routing congestions while increasing clock frequency.
+* Distributing the metal layers properly for the clock tree, signal nets and pins to get better PPA without negative slack.
 * Adjust the global routing layer properly to minimize routing congestion.
 * Keep the design DRC free while increasing the clock frequency.
-* Maintaining or keeping the DRV at minimum.
+* Maintaining or keeping minimum DRV. 
 
 ## **4. Observation** ##
 
-* In synthesis, yosys tool can’t handle multiple type  of library file. So, we can’t able to use different type of VT cell in the design. We can only use the RVT or LVT or SLVT cell.
-* In the library file there wasn’t any clock buffer cell so we had to use the normal buffer cell and clock inverter for CTS.
-* While we change the macro position in our design for some macro placement tool wasn’t able to route properly due to high routing congestion.
-* While increasing the clock frequency we show some DRC violation (for example minimum spacing violation) in our routing stage.
+* In synthesis, yosys tool cannot handle multiple types of library files. So, we arenot able to use different type of VT cells in the design. We can only use the RVT or LVT or SLVT cell.
+* In the library file there were no clock buffer cells so we had to use the normal buffer cell and clock inverter for CTS.
+* While we changed the macro positions in our design for some macros, tool wasn’t able to route properly due to high routing congestion for some of the macro placements.
+* While increasing the clock frequency we found some DRC violations (for example minimum spacing violation) in our routing stage.
 
 ## **5. What is Do-able?** ##
 
@@ -91,7 +91,7 @@ We used SLVT cell for both riscV32i and ibex design.
 
 ### **6.2 Floor Plan:** ###
 
-* While increasing frequency we faced some Metal spacing related DRC violation and changing the pin metal layer solve the issue. Also by changing the pin metal layer we can maintain the routing congestion.
+* While increasing frequency we faced some Metal spacing related DRC violation which was solved by changing the metal layer of the pins.This also allowed us to maintain the routing congestion.
 
 ##### **For riscV32i:** #####
 For riscV32i design we used M4 (which is default value set in PDK config file) and M7 (edited on design config file) metal layer for horizontal and vertical Pin layer. 
@@ -108,7 +108,7 @@ For ibex design we used default settings which is M4 and M5 metal layer for hori
 ![fig. 5](./Images/3_clk_routing_layer.png)  
 `./flow/scripts/cts.tcl`
 
-* We Also added Remove_buffer and reapair_design command to remove all buffer tree and rebuilt the clock tree again to get better clock skew.
+* We Also added remove_buffer and repair_design command to remove all buffer tree and rebuild the clock tree again to get better clock skew.
 
 ![fig. 6](./Images/4_remove_buffer_tree.png)  
 `./flow/scripts/cts.tcl`
@@ -160,9 +160,7 @@ The changes on design config.mk is given below:
 `./flow/designs/asap7/ibex/config.mk`
 
 ## **7. Conclusion** ##
-By multiple test runs using various resources available, we
-were able to come up with ideas that were able to meet the
-design goals of the contest which was to achieve best performance (Best fmax) without any timing violation (0 wns).**For riscV32i design we are able to achieve 771.01 MHz frequency and for ibex we are able to achieve 769.23 MHz frequency with 0 wns, we could have achieved more better frequency but in that case DRV (Design Rule Violations) violation will be much larger and that's why we didn't increase the frequency after 771.01 MHz**. Here is the comparison of the base run using the default flow script of OpenRoad (on 625MHZ for riscV32i and 568.18 MHz for ibex) and the base run using all our modifications (on 769.63 MHz for both riscV32i and ibex).
+By multiple test runs using various resources available, we were able to come up with ideas that were able to meet the design goals of the contest which was to achieve best performance (Best fmax) without any timing violation (0 wns).** For riscV32i design we were able to achieve 771.01 MHz frequency and for ibex we were able to achieve 769.23 MHz frequency with 0 wns. Higher frequency was achievable but in that case DRV (Design Rule Violations) violation will increase and so we didn't increase the frequency after 771.01 MHz **. Here is the comparison of the base run using the default flow script of OpenRoad (on 625MHZ for riscV32i and 568.18 MHz for ibex) and the completed run using all our modifications ( on 777 MHz for riscV32i design and 769.63 MHz for ibex design).
 
 &nbsp;
 
