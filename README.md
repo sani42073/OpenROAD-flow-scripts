@@ -185,12 +185,12 @@ By multiple test runs using various resources available, we were able to come up
 
 #### **Comparison for ibex design:** ####  
 
-**Comparison between two design config file**
+##### **Comparison between two design config file** #####
 
 ![plot](./Images/ibex_base_vs_edited_config.png)  
 
 
-**Comparison of output**
+##### **Comparison of output** #####
 
 |Criteria| Default flow script | Modified flow script |
 |---------|---------------------| ---------------------|
@@ -202,7 +202,7 @@ By multiple test runs using various resources available, we were able to come up
 |DRC after routing| 0 | 0 |
 
 
-**Note:** 
+##### **Note:** #####
 * After cloning the repository, If ORFS is already built locally in your machine then you may need to source `setup.env.sh` file from that directory.
 * And, after that you need to select the design in Makefile and run "make finish" command to run the flow.
 
