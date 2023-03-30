@@ -94,15 +94,12 @@ We used SLVT cell for both riscV32i and ibex design.
 * While increasing frequency we faced some Metal spacing related DRC violation and changing the pin metal layer solve the issue. Also by changing the pin metal layer we can maintain the routing congestion.
 
 ##### **For riscV32i:** #####
-For riscV32i design we used M4 and M7 metal layer for horizontal and vertical Pin layer. 
+For riscV32i design we used M4 (which is default value set in PDK config file) and M7 (edited on design config file) metal layer for horizontal and vertical Pin layer. 
 
 ![fig. 3](./Images/2_pinlayer_riscv.png)  
-
 `./flow/designs/asap7/riscv32i/config.mk`
 ##### **For ibex:** #####
-For ibex design we used M4 and M5 metal layer for horizontal and vertical Pin layer.  
-![fig. 4](./Images/2_pinlayer_ibex.png)    
-`./flow/designs/asap7/ibex/config.mk`
+For ibex design we used default settings which is M4 and M5 metal layer for horizontal and vertical Pin layer.  
 
 ### **6.3 CTS:** ###
 
